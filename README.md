@@ -67,3 +67,18 @@ jupyter notebook
 4. Open the `Test_the_environment.ipynb` and run the cells with SHIFT+ENTER. If the environment is correctly installed, you should get to see the Unity environment in another window and values for state and action spaces under `2. Examine the State and Action Spaces`. 
 
 
+### Train the agent or run a trained agent
+1. To train an agent for the above environment:
+```bash
+cd deepRL-p2-navigation/p2_continuous-control #navigate to the p2_continuous-control directory
+source activate p2_drlnd  #Activate the python environment
+jupyter notebook
+```
+2. Open the `Continuous_Control.ipynb` and run the cells with SHIFT+ENTER. 
+
+3. To directly run the trained model, navigate to the `4. Watch a Smart Agent!` in the notebook and run the code.
+
+__Note:__ Before running code in a notebook, change the kernel to match the `p2_drlnd` environment by using the drop-down `Kernel` menu. 
+
+
+
