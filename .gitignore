@@ -1,3 +1,6 @@
+# Ignore the Unity environment executables
+p2_continuous-control/Reacher_Linux 
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
