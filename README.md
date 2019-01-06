@@ -80,5 +80,7 @@ jupyter notebook
 
 __Note:__ Before running code in a notebook, change the kernel to match the `p2_drlnd` environment by using the drop-down `Kernel` menu. 
 
+### Report
+See the [report](https://github.com/mayurand/deepRL-p2-Continuous-Control.git/Report.ipynb) for more details on the implementation.
 
 
