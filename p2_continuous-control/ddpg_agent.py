@@ -16,6 +16,8 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 LR_ACTOR = 1e-4       # Actor Learning Rate
 LR_CRITIC = 3e-4      # Critic Learning Rate
 WEIGHT_DECAY = 0.0001 # L2 weight decay
+BUFFER_SIZE = int(1e6)# replay buffer size
+BATCH_SIZE = 128      # minibatch size
 
 class Agent():
     """Interacts with and learns from the environment"""
@@ -51,26 +53,29 @@ class Agent():
 
         # Replay memory
         self.memory = ReplayBuffer(action_size, BUFFER_SIZE, BATCH_SIZE, random_seed)
-        
-        
-    def step():
+    
+    def act(self, state, add_noise=True):
+        """Returns actions for given state as per current policy."""
+        state = torch.from_numpy(state).float().to(device)
+        self.actor_local.eval()
+        with torch.no_grad():
+            action = self.actor_local(state).cpu().data.numpy()
+        #self.actor_local.train()
+        if add_noise:
+            action += self.noise.sample()
+        return np.clip(action, -1, 1)
+    
+    def reset(self):
+        self.noise.reset()
+    
+    
+    def learn(self):
         pass
     
-    def act():
+    def soft_update(self):
         pass
     
-    
-    def reset():
-        pass
-    
-    
-    def learn():
-        pass
-    
-    def soft_update():
-        pass
-    
-class OUNoise():
+class OUNoise:
     """Ornstein-Uhlenbeck process."""
     def __init__(self, size, seed, mu=0., theta=0.15, sigma=0.2):
         """Initialize parameters and noise process."""
@@ -91,11 +96,11 @@ class OUNoise():
         self.state = x + dx
         return self.state
 
-class ReplayBuffer():
+class ReplayBuffer:
     """Fixed-size buffer to store experience tuples."""
     
-    def __init__(action_size, buffer_size, batch_size, random_seed):
-         """Initialize a ReplayBuffer object.
+    def __init__(self, action_size, buffer_size, batch_size, random_seed):
+        """Initialize a ReplayBuffer object.
         Params
         ======
             buffer_size (int): maximum size of buffer
