@@ -1,5 +1,6 @@
 # Ignore the Unity environment executables
 p2_continuous-control/Reacher_Linux 
+p2_continuous-control/Reacher_Linux_20 
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
